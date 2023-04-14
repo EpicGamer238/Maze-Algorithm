@@ -115,6 +115,7 @@
             label2 = new Label();
             panel1 = new Panel();
             panel2 = new Panel();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -985,12 +986,23 @@
             panel2.Size = new Size(463, 462);
             panel2.TabIndex = 132;
             // 
+            // button2
+            // 
+            button2.Location = new Point(490, 456);
+            button2.Name = "button2";
+            button2.Size = new Size(75, 23);
+            button2.TabIndex = 133;
+            button2.Text = "RESET";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(588, 488);
+            Controls.Add(button2);
             Controls.Add(panel1);
             Controls.Add(pictureBox19);
             Controls.Add(pictureBox23);
@@ -1253,5 +1265,6 @@
         private Label label2;
         private Panel panel1;
         private Panel panel2;
+        private Button button2;
     }
 }

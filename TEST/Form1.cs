@@ -59,8 +59,9 @@ namespace TEST
             //Gets a list of all boxes within range ordered from closest to furthest
             List<Control> result = boxList.Values.ToArray().ToList();
 
-            //An extra picture box is added to account for if there are no boxes within range so an error isnt thrown. Picturebox10 is hidden so it has no impact on the program
-            result.Add(pictureBox10);
+            //An extra picture box is added to if there are no boxes within range so an error isnt thrown. Picturebox10 is hidden so it has no impact on the program
+            if (result.Count == 0)
+                result.Add(pictureBox10);
 
             return result;
         }
@@ -80,7 +81,15 @@ namespace TEST
             if (selectedBox.BackColor == Color.Black)
                 selectedBox.BackColor = Color.White;
             else
+            {
                 selectedBox.BackColor = Color.Black;
+
+                //If box was the start point, add 'start' to the list of open end points
+                if (selectedBox == start)
+                {
+                    OpenEndPoints.Add("Start");
+                }
+            }
         }
 
         //Function places endpoints for the program to start and finish at
@@ -93,7 +102,7 @@ namespace TEST
             if (SelectedBox.BackColor == Color.White && OpenEndPoints.Count > 0)
             {
                 //If start point hasn't been placed, place it
-                if (OpenEndPoints[0] == "Start")
+                if (OpenEndPoints.Contains("Start"))
                 {
                     //Turns the square blue and sets the start object to the selected box
                     SelectedBox.BackColor = Color.Blue;
@@ -144,7 +153,7 @@ namespace TEST
                 Point pos = body.Location;
 
                 //Gets the directly adjacent squares, excluding the current square
-                Control[] neighbours = getNeighbours(pos.X + 25, pos.Y + 25, 60).ToArray()[1..];
+                List<Control> neighbours = getNeighbours(pos.X + 25, pos.Y + 25, 60).ToArray()[1..].ToList();
 
                 //Iterates through the neighbouring squares and labels them as either valid or invalid
                 foreach (Control box in neighbours)
@@ -193,7 +202,7 @@ namespace TEST
             //Marks the chosen square 
             nextBox.BackColor = Color.Plum;
             totalcost++;
-            
+
             //Repeats the function until it reaches the start of the path
             if (nextBox != start)
                 retrace(nextBox.Location);
@@ -202,6 +211,10 @@ namespace TEST
         //When the 'SOLVE' button is clicked, it determines whether each tile is valid or invalid, then it retraces back from the end of the maze
         private void button1_Click(object sender, EventArgs e)
         {
+            validTiles.Clear();
+            invalidTiles.Clear();
+            totalcost = 1;
+            isEnd = false;
             //Determines whether start's surrounding tiles are valid
             setTiles(start);
 
@@ -220,6 +233,24 @@ namespace TEST
             label1.Text = $"Cost: {totalcost}";
             label2.Text = $"Path Length: {50 * totalcost}px";
 
+        }
+        //When 'RESET' button is pressed, every public variable is reset and every maze tile is set back to black
+        private void button2_Click(object sender, EventArgs e)
+        {
+            validTiles.Clear();
+            invalidTiles.Clear();
+            totalcost = 1;
+            isEnd = false;
+            OpenEndPoints.Add("Start");
+            OpenEndPoints.Add("End");
+
+            foreach(Control tile in this.Controls)
+            {
+                if(tile is PictureBox && tile.Name != "pictureBox10")
+                {
+                    tile.BackColor = Color.Black;
+                }
+            }
         }
     }
 }
