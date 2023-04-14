@@ -92,7 +92,6 @@
             pictureBox110 = new PictureBox();
             pictureBox111 = new PictureBox();
             pictureBox112 = new PictureBox();
-            pictureBox6 = new PictureBox();
             button1 = new Button();
             pictureBox10 = new PictureBox();
             pictureBox11 = new PictureBox();
@@ -115,6 +114,7 @@
             label1 = new Label();
             label2 = new Label();
             panel1 = new Panel();
+            panel2 = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -179,7 +179,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox110).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox111).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox112).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox11).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox12).BeginInit();
@@ -777,15 +776,6 @@
             pictureBox112.TabIndex = 86;
             pictureBox112.TabStop = false;
             // 
-            // pictureBox6
-            // 
-            pictureBox6.BackColor = SystemColors.Desktop;
-            pictureBox6.Location = new Point(5, 6);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(463, 462);
-            pictureBox6.TabIndex = 109;
-            pictureBox6.TabStop = false;
-            // 
             // button1
             // 
             button1.Location = new Point(490, 427);
@@ -798,6 +788,7 @@
             // 
             // pictureBox10
             // 
+            pictureBox10.BackColor = SystemColors.Control;
             pictureBox10.Location = new Point(490, 222);
             pictureBox10.Name = "pictureBox10";
             pictureBox10.Size = new Size(100, 50);
@@ -986,6 +977,14 @@
             panel1.Size = new Size(117, 91);
             panel1.TabIndex = 131;
             // 
+            // panel2
+            // 
+            panel2.BackColor = Color.Black;
+            panel2.Location = new Point(5, 6);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(463, 462);
+            panel2.TabIndex = 132;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1076,7 +1075,7 @@
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
-            Controls.Add(pictureBox6);
+            Controls.Add(panel2);
             Name = "Form1";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -1143,7 +1142,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox110).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox111).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox112).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox11).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox12).EndInit();
@@ -1232,7 +1230,6 @@
         private PictureBox pictureBox110;
         private PictureBox pictureBox111;
         private PictureBox pictureBox112;
-        private PictureBox pictureBox6;
         private Button button1;
         private PictureBox pictureBox10;
         private PictureBox pictureBox11;
@@ -1255,5 +1252,6 @@
         private Label label1;
         private Label label2;
         private Panel panel1;
+        private Panel panel2;
     }
 }
