@@ -790,9 +790,9 @@
             // pictureBox10
             // 
             pictureBox10.BackColor = SystemColors.Control;
-            pictureBox10.Location = new Point(490, 222);
+            pictureBox10.Location = new Point(576, 222);
             pictureBox10.Name = "pictureBox10";
-            pictureBox10.Size = new Size(100, 50);
+            pictureBox10.Size = new Size(14, 10);
             pictureBox10.TabIndex = 111;
             pictureBox10.TabStop = false;
             pictureBox10.Visible = false;
@@ -958,6 +958,7 @@
             label1.Size = new Size(38, 15);
             label1.TabIndex = 129;
             label1.Text = "label1";
+            label1.Visible = false;
             // 
             // label2
             // 
@@ -967,16 +968,18 @@
             label2.Size = new Size(38, 15);
             label2.TabIndex = 130;
             label2.Text = "label2";
+            label2.Visible = false;
             // 
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.Fixed3D;
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(471, 323);
+            panel1.Location = new Point(472, 380);
             panel1.Name = "panel1";
-            panel1.Size = new Size(117, 91);
+            panel1.Size = new Size(112, 46);
             panel1.TabIndex = 131;
+            panel1.Visible = false;
             // 
             // panel2
             // 

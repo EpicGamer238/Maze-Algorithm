@@ -18,6 +18,7 @@ namespace TEST
         Control start;
         Control end;
         bool isEnd = false;
+        bool Display = false;
         int totalcost = 1;
         public Form1()
         {
@@ -89,6 +90,21 @@ namespace TEST
                 {
                     OpenEndPoints.Add("Start");
                 }
+            }
+            //If the maze is displaying the result and the form is clicked, the path is reset back to white and the info is hidden
+            if (Display)
+            {
+                Display = false;
+                foreach (Control tile in this.Controls)
+                {
+                    if (tile.BackColor == Color.Plum)
+                    {
+                        tile.BackColor = Color.White;
+                    }
+                }
+                label1.Visible = false;
+                label2.Visible = false;
+                panel1.Visible = false;
             }
         }
 
@@ -230,13 +246,17 @@ namespace TEST
             start.BackColor = Color.Blue;
 
             //Displays path info
+            label1.Visible = true;
+            label2.Visible = true;
+            panel1.Visible = true;
             label1.Text = $"Cost: {totalcost}";
             label2.Text = $"Path Length: {50 * totalcost}px";
-
+            Display = true;
         }
         //When 'RESET' button is pressed, every public variable is reset and every maze tile is set back to black
         private void button2_Click(object sender, EventArgs e)
         {
+            //Sets every public variable back to the default values
             validTiles.Clear();
             invalidTiles.Clear();
             totalcost = 1;
@@ -244,9 +264,11 @@ namespace TEST
             OpenEndPoints.Add("Start");
             OpenEndPoints.Add("End");
 
-            foreach(Control tile in this.Controls)
+            //Gets every picture box turns it black
+            foreach (Control tile in this.Controls)
             {
-                if(tile is PictureBox && tile.Name != "pictureBox10")
+                //Checks if the control is a picture box and changes its colour to black
+                if (tile is PictureBox)
                 {
                     tile.BackColor = Color.Black;
                 }
