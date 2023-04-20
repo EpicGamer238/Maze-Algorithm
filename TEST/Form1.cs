@@ -1,7 +1,7 @@
 /*HEADER
  * Author: Simon Wunderlich
  * For VCE Units 1 & 2 Computing
- * Date of last edit: 14/04/23
+ * Date of last edit: 20/04/23
  * Summary: A program that allows users to draw out a maze on an 8x8 grid. The program can then solve the maze and provide the most efficient route
  */
 
