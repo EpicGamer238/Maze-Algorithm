@@ -1,10 +1,61 @@
 /*HEADER
  * Author: Simon Wunderlich
  * For VCE Units 1 & 2 Computing
- * Date of last edit: 20/04/23
+ * Date of last edit: 22/04/23
  * Summary: A program that allows users to draw out a maze on an 8x8 grid. The program can then solve the maze and provide the most efficient route
  */
 
+/*PSEUDOCODE
+ * START
+ * 
+ * DEFINE tile_Clicked(object sender, EventArgs e)
+ *      IF (sender colour = white) THEN
+ *          sender colour <- black
+ *      ELSE
+ *          sender colour <- white
+ *  
+ *  DEFINE tile_RightClicked(object sender, EventArgs e)
+ *      IF (startTile = null) THEN
+ *          startTile <- sender
+ *          sender colour <- blue
+ *      ELSE IF (endTile = null) THEN
+ *          endTIle <- sender
+ *          sender colour <- red
+ * 
+ *  DEFINE getNeighbours(Tile tile)
+ *      LIST neighbours
+ *      FOR x <- COUNT tileAmt
+ *          IF tileList[x] distance < 50 THEN
+ *              neightbours ADD tileList[x]
+ *      RETRUN neighbours
+ *  DEFINE setNeighbours(Tile tile)
+ *      invalidTiles ADD tile
+ *      LIST neighbours = CALL getNeighbours(tile)
+ *      FOR x<- COUNT neighbours length
+ *          if neighbour[x] <> valid and <> black and <> invalid THEN
+ *              LIST validTiles ADD neighbours[x]
+ *              neighbours[x] Cost <- tile Cost PLUS 1
+ *          ELSE IF neighbour <> invalid
+ *              LIST invalidTiles ADD neighbours[x]
+ *              
+ *   DEFINE retrace(Tile tile)
+ *      IF tile <> startTile THEN
+ *          tile color <- grey
+ *          LIST neighCostList
+ *          neighbours <- getNeighbours(tile)
+ *          FOR x <- COUNT neighbours LENGTH
+ *              neighCostList ADD (neighbours[x] COST, neighbours[x])
+ *          SORT neighCostList
+ *          retrace(neighCostList[0]
+ *  IF 'solve' button pressed THEN
+ *      setNeighbours(startTile)
+ *      
+ *      WHILE validTiles does not contain endTile
+ *          setNeighbours(validTiles[0])
+ *          validTiles REMOVE AT INDEX 0
+ *      retrace(end)
+ *      
+ */
 using System.Runtime.InteropServices;
 
 namespace TEST
