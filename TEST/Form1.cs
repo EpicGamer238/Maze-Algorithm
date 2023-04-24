@@ -220,7 +220,7 @@ namespace TEST
                 Point pos = body.Location;
 
                 //Gets the directly adjacent squares, excluding the current square
-                List<Control> neighbours = getNeighbours(pos.X + 25, pos.Y + 25, 60).ToArray()[1..].ToList();
+                List<Control> neighbours = getNeighbours(pos.X + 25, pos.Y + 25, 80).ToArray()[1..].ToList();
 
                 //Iterates through the neighbouring squares and labels them as either valid or invalid
                 foreach (Control box in neighbours)
@@ -248,7 +248,7 @@ namespace TEST
         private void retrace(Point pos)
         {
             //Finds directly adjacent squares to current square
-            List<Control> ancestors = getNeighbours(pos.X + 25, pos.Y + 25, 60);
+            List<Control> ancestors = getNeighbours(pos.X + 25, pos.Y + 25, 60).ToArray()[1..].ToList();
 
             //A sorted dictionary which will hold a square's cost and control, sorted by cost in acending order
             SortedDictionary<double, Control> weightedBoxes = new SortedDictionary<double, Control>();
@@ -267,7 +267,7 @@ namespace TEST
             //Finds the square with the lowest cost and assigns it to 'nextBox'
             Control nextBox = weightedBoxes.Values.ToArray()[0];
             //Marks the chosen square 
-            nextBox.BackColor = Color.Plum;
+            nextBox.BackColor = Color.Green;
             totalcost++;
 
             //Repeats the function until it reaches the start of the path
