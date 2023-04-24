@@ -69,8 +69,8 @@ namespace TEST
         Control start;
         Control end;
         bool isEnd = false;
-        bool Display = false;
-        int totalcost = 1;
+        bool isDisplaying = false;
+        int totalCost = 1;
         public Form1()
         {
             InitializeComponent();
@@ -86,7 +86,7 @@ namespace TEST
             OpenEndPoints.Add("End");
         }
         //Given a position on the canvas and a range, it will find every box within the range of the position
-        public List<Control> getNeighbours(int x, int y, int range)
+        public List<Control> GetNeighbours(int x, int y, int range)
         {
             SortedDictionary<Double, Control> boxList = new SortedDictionary<Double, Control>();
 
@@ -126,7 +126,7 @@ namespace TEST
             Point mousePos = this.PointToClient(Cursor.Position);
 
             //Finds the closest box to the mouse cursor
-            Control selectedBox = getNeighbours(mousePos.X, mousePos.Y, 50)[0];
+            Control selectedBox = GetNeighbours(mousePos.X, mousePos.Y, 50)[0];
 
             //If box is black, make it white
             //Otherwise, make it black
@@ -143,9 +143,9 @@ namespace TEST
                 }
             }
             //If the maze is displaying the result and the form is clicked, the path is reset back to white and the info is hidden
-            if (Display)
+            if (isDisplaying)
             {
-                Display = false;
+                isDisplaying = false;
                 foreach (Control tile in this.Controls)
                 {
                     if (tile.BackColor == Color.Plum)
@@ -160,10 +160,10 @@ namespace TEST
         }
 
         //Function places endpoints for the program to start and finish at
-        public void setEndPoints(int x, int y)
+        public void SetEndPoints(int x, int y)
         {
             //Gets closest box to given coords
-            Control SelectedBox = getNeighbours(x, y, 50)[0];
+            Control SelectedBox = GetNeighbours(x, y, 50)[0];
 
             //checks if the closest box is white and not all endpoints have been placed
             if (SelectedBox.BackColor == Color.White && OpenEndPoints.Count > 0)
@@ -198,11 +198,11 @@ namespace TEST
             Point mousePos = this.PointToClient(Cursor.Position);
 
             //Calls setEndPoints with the cursors location
-            setEndPoints(mousePos.X, mousePos.Y);
+            SetEndPoints(mousePos.X, mousePos.Y);
         }
 
         //Finds the adjacent squares and determines whether they are valid to continue the path
-        public void setTiles(Control body)
+        public void SetTiles(Control body)
         {
             //Checks if the algorithm has reached the endpoint
             if (body == end)
@@ -220,7 +220,7 @@ namespace TEST
                 Point pos = body.Location;
 
                 //Gets the directly adjacent squares, excluding the current square
-                List<Control> neighbours = getNeighbours(pos.X + 25, pos.Y + 25, 80).ToArray()[1..].ToList();
+                List<Control> neighbours = GetNeighbours(pos.X + 25, pos.Y + 25, 60).ToArray()[1..].ToList();
 
                 //Iterates through the neighbouring squares and labels them as either valid or invalid
                 foreach (Control box in neighbours)
@@ -245,10 +245,10 @@ namespace TEST
             }
         }
         //Function that retraces from the finish point and finds the most efficient path
-        private void retrace(Point pos)
+        private void Retrace(Point pos)
         {
             //Finds directly adjacent squares to current square
-            List<Control> ancestors = getNeighbours(pos.X + 25, pos.Y + 25, 60).ToArray()[1..].ToList();
+            List<Control> ancestors = GetNeighbours(pos.X + 25, pos.Y + 25, 60).ToArray()[1..].ToList();
 
             //A sorted dictionary which will hold a square's cost and control, sorted by cost in acending order
             SortedDictionary<double, Control> weightedBoxes = new SortedDictionary<double, Control>();
@@ -268,11 +268,11 @@ namespace TEST
             Control nextBox = weightedBoxes.Values.ToArray()[0];
             //Marks the chosen square 
             nextBox.BackColor = Color.Green;
-            totalcost++;
+            totalCost++;
 
             //Repeats the function until it reaches the start of the path
             if (nextBox != start)
-                retrace(nextBox.Location);
+                Retrace(nextBox.Location);
         }
 
         //When the 'SOLVE' button is clicked, it determines whether each tile is valid or invalid, then it retraces back from the end of the maze
@@ -280,29 +280,29 @@ namespace TEST
         {
             validTiles.Clear();
             invalidTiles.Clear();
-            totalcost = 1;
+            totalCost = 1;
             isEnd = false;
             //Determines whether start's surrounding tiles are valid
-            setTiles(start);
+            SetTiles(start);
 
             //Loops through the entire maze until it finds the end and determines the validity of each tile it selectes
             while (!isEnd)
             {
-                setTiles(validTiles[0]);
+                SetTiles(validTiles[0]);
                 validTiles.RemoveAt(0);
             }
 
             //Retraces back through maze from end point
-            retrace(end.Location);
+            Retrace(end.Location);
             start.BackColor = Color.Blue;
 
             //Displays path info
             label1.Visible = true;
             label2.Visible = true;
             panel1.Visible = true;
-            label1.Text = $"Cost: {totalcost}";
-            label2.Text = $"Path Length: {50 * totalcost}px";
-            Display = true;
+            label1.Text = $"Cost: {totalCost}";
+            label2.Text = $"Path Length: {50 * totalCost}px";
+            isDisplaying = true;
         }
         //When 'RESET' button is pressed, every public variable is reset and every maze tile is set back to black
         private void button2_Click(object sender, EventArgs e)
@@ -310,7 +310,7 @@ namespace TEST
             //Sets every public variable back to the default values
             validTiles.Clear();
             invalidTiles.Clear();
-            totalcost = 1;
+            totalCost = 1;
             isEnd = false;
             OpenEndPoints.Add("Start");
             OpenEndPoints.Add("End");
@@ -324,6 +324,11 @@ namespace TEST
                     tile.BackColor = Color.Black;
                 }
             }
+        }
+
+        private void pictureBox55_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

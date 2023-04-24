@@ -479,6 +479,7 @@
             pictureBox55.Size = new Size(50, 50);
             pictureBox55.TabIndex = 31;
             pictureBox55.TabStop = false;
+            pictureBox55.Click += pictureBox55_Click;
             // 
             // pictureBox56
             // 
